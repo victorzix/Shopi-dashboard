@@ -1,0 +1,63 @@
+:host ::ng-deep {
+  .login-form-container {
+    width: 100%;
+    padding: 1rem 2rem;
+
+    .p-toast {
+      width: 15%;
+      color: white;
+      .p-toast-message {
+        border-radius: 1em;
+      }
+
+      .p-toast-message-error {
+        box-shadow: 0px 0px 25px -5px #ff4545;
+        background-color: #ff4545;
+        border: 1px solid #f5c6cb;
+        .p-toast-summary {
+          font-size: 0.9rem;
+          font-weight: bold;
+        }
+
+        .p-toast-detail {
+          padding: 0;
+          font-size: 0.6rem;
+        }
+      }
+    }
+
+    .login-form-title {
+      font-size: 1.3rem;
+    }
+
+    .login-form-inputs {
+      width: 100%;
+      padding: 0.5rem 0 2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+
+      .login-form-label {
+        width: fit-content;
+
+        .login-form-input {
+          padding: 0.6rem;
+          border: 1px lightgray solid;
+          border-radius: 0.5rem;
+          width: 24rem;
+          height: 3rem;
+        }
+      }
+      .login-form-submit-button {
+        width: 24rem;
+        display: flex;
+        justify-content: flex-end;
+        .p-button {
+          width: 10rem;
+          align-self: self-end;
+        }
+      }
+    }
+  }
+}

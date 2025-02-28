@@ -1,0 +1,66 @@
+<div class="register-form-container">
+  <p-toast position="bottom-right" />
+  <h2 class="register-form-title">Criar Conta</h2>
+  <form
+    class="register-form-inputs"
+    [formGroup]="registerForm"
+    (ngSubmit)="register()"
+  >
+    <p-floatlabel variant="on" class="register-form-label">
+      <input
+        name="email"
+        type="text"
+        pInputText
+        formControlName="email"
+        id="email"
+        [pKeyFilter]="blockSpace"
+        class="register-form-input email"
+      />
+      <label for="email">Email</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on" class="register-form-label">
+      <input
+        name="name"
+        type="name"
+        pInputText
+        formControlName="name"
+        id="name"
+        class="register-form-input name"
+      />
+      <label for="name">Nome completo</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on" class="register-form-label">
+      <input
+        name="document"
+        type="document"
+        pInputText
+        formControlName="document"
+        id="document"
+        class="register-form-input document"
+      />
+      <label for="document">Documento</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on" class="register-form-label">
+      <input
+        name="password"
+        type="password"
+        pInputText
+        formControlName="password"
+        id="password"
+        class="register-form-input password"
+      />
+      <label for="password">Senha</label>
+    </p-floatlabel>
+    <div class="register-form-submit-button">
+      <p-button
+        label="Entrar"
+        type="submit"
+        [raised]="true"
+        severity="primary"
+        [disabled]="!registerForm.valid"
+      />
+    </div>
+  </form>
+</div>

@@ -1,0 +1,32 @@
+<div class="login-form-container">
+  <p-toast position="bottom-right"/>
+  <h2 class="login-form-title">Acessar Conta</h2>
+  <form class="login-form-inputs" [formGroup]="loginForm" (ngSubmit)="login()">
+    <p-floatlabel variant="on" class="login-form-label">
+      <input
+        name="email"
+        type="text"
+        pInputText
+        formControlName="email"
+        id="email"
+        [pKeyFilter]="blockSpace"
+        class="login-form-input email"
+      />
+      <label for="email">Email</label>
+    </p-floatlabel>
+    <p-floatlabel variant="on" class="login-form-label">
+      <input
+        name="password"
+        type="password"
+        pInputText
+        formControlName="password"
+        id="password"
+        class="login-form-input password"
+      />
+      <label for="password">Senha</label>
+    </p-floatlabel>
+    <div class="login-form-submit-button">
+      <p-button label="Entrar" type="submit" [raised]="true" severity="primary" [disabled]="!loginForm.valid"/>
+    </div>
+  </form>
+</div>
