@@ -1,66 +1,48 @@
-<div class="register-form-container">
-  <p-toast position="bottom-right" />
-  <h2 class="register-form-title">Criar Conta</h2>
+<div class="p-2 w-full flex flex-col gap-3 items-center text-black">
+  <h2 class="text-2xl font-bold">Acessar Conta</h2>
   <form
-    class="register-form-inputs"
+    class="w-full flex flex-col gap-3 items-center"
     [formGroup]="registerForm"
     (ngSubmit)="register()"
   >
-    <p-floatlabel variant="on" class="register-form-label">
-      <input
-        name="email"
-        type="text"
-        pInputText
-        formControlName="email"
-        id="email"
-        [pKeyFilter]="blockSpace"
-        class="register-form-input email"
-      />
-      <label for="email">Email</label>
-    </p-floatlabel>
-    <p-floatlabel variant="on" class="register-form-label">
+    <label for="name" class="w-full" hlmLabel
+      >Nome
       <input
         name="name"
         type="name"
-        pInputText
+        hlmInput
         formControlName="name"
-        id="name"
-        class="register-form-input name"
+        class="w-full"
       />
-      <label for="name">Nome completo</label>
-    </p-floatlabel>
-
-    <p-floatlabel variant="on" class="register-form-label">
+    </label>
+    <label for="email" class="w-full" hlmLabel
+      >Email
       <input
-        name="document"
-        type="document"
-        pInputText
-        formControlName="document"
-        id="document"
-        class="register-form-input document"
+        name="email"
+        type="text"
+        hlmInput
+        formControlName="email"
+        class="w-full"
       />
-      <label for="document">Documento</label>
-    </p-floatlabel>
-
-    <p-floatlabel variant="on" class="register-form-label">
+    </label>
+    <label for="password" class="w-full" hlmLabel
+      >Senha
       <input
         name="password"
         type="password"
-        pInputText
+        hlmInput
         formControlName="password"
-        id="password"
-        class="register-form-input password"
+        class="w-full"
       />
-      <label for="password">Senha</label>
-    </p-floatlabel>
-    <div class="register-form-submit-button">
-      <p-button
-        label="Entrar"
-        type="submit"
-        [raised]="true"
-        severity="primary"
-        [disabled]="!registerForm.valid"
-      />
-    </div>
+    </label>
+    <button
+      type="submit"
+      hlmBtn
+      variant="secondary"
+      [disabled]="registerForm.invalid"
+      class="w-full cursor-pointer hover:bg-black hover:scale-105 hover:text-white rounded-xs hover:rounded-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out"
+    >
+      Registrar
+    </button>
   </form>
 </div>

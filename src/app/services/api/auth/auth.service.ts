@@ -17,7 +17,7 @@ export class AuthService {
 
   async login(data: ILoginData): Promise<ILoginResponse> {
     try {
-      const result = this.http.post<ILoginResponse>(`${environment.apiUrl}/auth/login`, data, {
+      const result = this.http.post<ILoginResponse>(`${environment.apiUrl}/auth/login-admin`, data, {
         ...httpHeaders,
       });
       const response = await lastValueFrom(result);
@@ -29,7 +29,7 @@ export class AuthService {
 
   async register(data: IRegisterData): Promise<IRegisterResponse> {
     try {
-      const result = this.http.post<IRegisterResponse>(`${environment.apiUrl}/customer/register`, data, {
+      const result = this.http.post<IRegisterResponse>(`${environment.apiUrl}/admin/register`, data, {
         ...httpHeaders,
       });
       const response = await lastValueFrom(result);

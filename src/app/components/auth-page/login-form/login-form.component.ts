@@ -1,35 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { FloatLabel } from 'primeng/floatlabel';
-import { InputTextModule } from 'primeng/inputtext'; // Para evitar possíveis erros com pInputText
 import { ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { KeyFilterModule } from 'primeng/keyfilter';
-import { ToastModule } from 'primeng/toast';
 import { AuthService } from '../../../services/api/auth/auth.service';
 import { ILoginData } from '../../../interfaces/auth/ilogin-data';
-import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
+import ToastUtils from '../../../../utils/toast-utils';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'app-login-form',
   imports: [
-    ToastModule,
-    FloatLabel,
-    InputTextModule,
     ReactiveFormsModule,
-    ButtonModule,
-    KeyFilterModule,
+    HlmButtonDirective,
+    HlmLabelDirective,
+    HlmInputDirective,
   ],
-  providers: [MessageService],
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent {
   constructor(
     private authService: AuthService,
-    private messageService: MessageService,
-    private router: Router // Inject Router
+    @Inject(Router) private router: Router
   ) {}
 
   blockSpace: RegExp = /[^\s]/;
@@ -50,17 +43,16 @@ export class LoginFormComponent {
 
     const loginResult = await this.authService.login(formData);
     if (loginResult.error) {
-      const errorMessages = loginResult.error.error.errors.map(
-        (err: string) => ({
-          severity: 'error',
-          summary: 'Erro ao realizar login',
-          detail: err,
-        })
-      );
-      this.messageService.addAll(errorMessages);
+      loginResult.error.error.errors.forEach((err: string) => {
+        ToastUtils.showToast('error', 'Erro ao realizar login', 3000, err);
+      });
     } else if (loginResult.token) {
+      ToastUtils.showToast('loading', 'Redirecionando para dashboard', 3500);
+
       localStorage.setItem('token', loginResult.token);
-      this.router.navigate(['']);
+      setTimeout(() => {
+        this.router.navigate(['']);
+      }, 3000);
     }
   }
 }

@@ -1,32 +1,50 @@
-<div class="login-form-container">
-  <p-toast position="bottom-right"/>
-  <h2 class="login-form-title">Acessar Conta</h2>
-  <form class="login-form-inputs" [formGroup]="loginForm" (ngSubmit)="login()">
-    <p-floatlabel variant="on" class="login-form-label">
+<div class="p-2 w-full flex flex-col gap-3 items-center text-black">
+  <h2 class="text-2xl font-bold">Acessar Conta</h2>
+  <form
+    class="w-full flex flex-col gap-3 items-center"
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+  >
+    <label for="email" class="w-full" hlmLabel
+      >Email
       <input
         name="email"
         type="text"
-        pInputText
+        hlmInput
         formControlName="email"
         id="email"
-        [pKeyFilter]="blockSpace"
-        class="login-form-input email"
+        class="w-full"
       />
-      <label for="email">Email</label>
-    </p-floatlabel>
-    <p-floatlabel variant="on" class="login-form-label">
+    </label>
+    <label for="password" class="w-full" hlmLabel
+      >Senha
       <input
         name="password"
         type="password"
-        pInputText
+        hlmInput
         formControlName="password"
         id="password"
-        class="login-form-input password"
+        class="w-full"
       />
-      <label for="password">Senha</label>
-    </p-floatlabel>
-    <div class="login-form-submit-button">
-      <p-button label="Entrar" type="submit" [raised]="true" severity="primary" [disabled]="!loginForm.valid"/>
-    </div>
+      <div class="w-full">
+        <button
+          hlmBtn
+          variant="link"
+          type="button"
+          class="p-0 text-xs cursor-pointer"
+        >
+          Esqueci minha senha
+        </button>
+      </div>
+    </label>
+    <button
+      type="submit"
+      hlmBtn
+      variant="secondary"
+      [disabled]="loginForm.invalid"
+      class="w-full cursor-pointer hover:bg-black hover:scale-105 hover:text-white rounded-xs hover:rounded-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out"
+    >
+      Entrar
+    </button>
   </form>
 </div>

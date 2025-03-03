@@ -1,14 +1,14 @@
-<div class="auth-page-container">
-  <p-tabs value="0" class="tabs-container">
-    <p-tablist class="tabs-list-container">
-      <p-tab value="0">Entrar</p-tab>
-      <p-tab value="1">Registrar</p-tab>
-    </p-tablist>
-    <p-tabpanel value="0">
+<div class="w-full h-full flex justify-center items-center ">
+  <hlm-tabs tab="account" class="mx-auto shadow-md w-1/6">
+    <hlm-tabs-list class="w-full grid grid-cols-2" aria-label="tabs">
+      <button hlmTabsTrigger="login" class="data-[state=active]:bg-black data-[state=active]:text-white">Entrar</button>
+      <button hlmTabsTrigger="register" class="data-[state=active]:bg-orange-400 data-[state=active]:text-white">Registrar</button>
+    </hlm-tabs-list>
+    <div hlmTabsContent="login" class="p-3">
       <app-login-form/>
-    </p-tabpanel>
-    <p-tabpanel value="1">
+    </div>
+    <div hlmTabsContent="register" class="p-3">
       <app-register-form/>
-    </p-tabpanel>
-  </p-tabs>
+    </div>
+  </hlm-tabs>
 </div>
