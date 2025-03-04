@@ -1,0 +1,26 @@
+<hlm-sheet-header>
+  <div hlmSheetTitle>
+    <app-logo type="mini" />
+  </div>
+  <div hlmSheetDescription>
+    <ng-container *ngIf="dataLoaded; else skeleton">
+      <div class="w-full flex flex-col gap-2 justify-center items-center">
+        <img
+          [src]="
+            userData?.imageUrl ||
+            'https://images.unsplash.com/photo-1668242372382-9e6282c63578?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+          "
+          class="w-18 h-18 rounded-full"
+        />
+        <span>{{ userData?.name }}</span>
+      </div>
+    </ng-container>
+
+    <ng-template #skeleton>
+      <div class="w-full flex flex-col gap-1 justify-center items-center">
+        <hlm-skeleton class="w-18 h-18 rounded-full bg-gray-300" />
+        <hlm-skeleton class="w-36 h-6 bg-gray-300" />
+      </div>
+    </ng-template>
+  </div>
+</hlm-sheet-header>

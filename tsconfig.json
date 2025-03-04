@@ -36,6 +36,27 @@
       ],
       "@spartan-ng/ui-label-helm": [
         ".\\src/app/components/libs/ui/ui-label-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-sheet-helm": [
+        ".\\src/app/components/libs/ui/ui-sheet-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-skeleton-helm": [
+        ".\\src/app/components/libs/ui/ui-skeleton-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-separator-helm": [
+        ".\\src/app/components/libs/ui/ui-separator-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-accordion-helm": [
+        ".\\src/app/components/libs/ui/ui-accordion-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-popover-helm": [
+        ".\\src/app/components/libs/ui/ui-popover-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-command-helm": [
+        ".\\src/app/components/libs/ui/ui-command-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-dialog-helm": [
+        ".\\src/app/components/libs/ui/ui-dialog-helm/src/index.ts"
       ]
     }
   },

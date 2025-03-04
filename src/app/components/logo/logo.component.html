@@ -1,6 +1,22 @@
-<div class="logo-container" [ngClass]="{'logo-mini': type === 'mini', 'logo-normal': type === 'normal'}">
-  <i class="pi pi-shopping-bag" [ngClass]="{'icon-mini': type === 'mini', 'icon-normal': type === 'normal'}"></i>
-  <span [ngClass]="{'span-mini': type === 'mini', 'span-normal': type === 'normal'}">
+<div
+  class="text-black flex flex-col justify-center items-center w-fit font-bebas-neue"
+>
+  <ng-icon
+    name="lucideShoppingBag"
+    [ngClass]="{
+      'text-xl': type === 'mini',
+      'text-2xl': type === 'medium',
+      'text-3xl': type === 'large'
+    }"
+    class="text-black"
+  />
+  <span
+    [ngClass]="{
+      'tracking-[.15rem]': type === 'mini',
+      'tracking-[.25rem] text-xl': type === 'medium',
+      'tracking-[.25rem] text-2xl': type === 'large'
+    }"
+  >
     <span>S</span>
     <span>h</span>
     <span>o</span>

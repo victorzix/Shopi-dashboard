@@ -1,0 +1,13 @@
+<hlm-sheet side="left">
+  <button id="edit-profile" variant="ghost" class="cursor-pointer hover:scale-105" brnSheetTrigger hlmBtn>
+    <ng-icon name="lucideMenu" class="text-xl"/>
+  </button>
+  <hlm-sheet-content *brnSheetContent="let ctx">
+    <app-side-bar-header [dataLoaded]="dataLoaded" [userData]="userData" />
+    <brn-separator hlmSeparator class="my-4" />
+    <app-side-bar-body />
+    <hlm-sheet-footer>
+      <button hlmBtn type="submit">Save Changes</button>
+    </hlm-sheet-footer>
+  </hlm-sheet-content>
+</hlm-sheet>

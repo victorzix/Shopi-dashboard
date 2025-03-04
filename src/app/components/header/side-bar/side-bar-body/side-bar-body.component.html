@@ -1,0 +1,58 @@
+<div hlmAccordion type="multiple">
+  <div hlmAccordionItem [isOpened]="isActive(['/', '/analises', '/financeiro', '/informacoes'])">
+    <button hlmAccordionTrigger>
+      <div class="flex items-center gap-3">
+        <ng-icon name="lucideShoppingBag" hlm hlmAccIcon />
+        Dashboard
+      </div>
+      <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
+    </button>
+    <hlm-accordion-content>
+      <ol>
+        <app-list-item title="Inicio" route=""/>
+        <app-list-item title="Análises" route="analises"/>
+        <app-list-item title="Financeiro" route="financeiro"/>
+        <app-list-item title="Informações" route="informacoes"/>
+      </ol>
+    </hlm-accordion-content>
+  </div>
+
+  <div hlmAccordionItem>
+    <button hlmAccordionTrigger>
+      <div class="flex items-center gap-3">
+        <ng-icon name="lucideShoppingBag" hlm hlmAccIcon />
+        Dashboard
+      </div>
+      <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
+    </button>
+    <hlm-accordion-content
+      >Yes. It adheres to the WAI-ARIA design pattern.</hlm-accordion-content
+    >
+  </div>
+
+  <div hlmAccordionItem>
+    <button hlmAccordionTrigger>
+      <div class="flex items-center gap-3">
+        <ng-icon name="lucideShoppingBag" hlm hlmAccIcon />
+        Dashboard
+      </div>
+      <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
+    </button>
+    <hlm-accordion-content
+      >Yes. It adheres to the WAI-ARIA design pattern.</hlm-accordion-content
+    >
+  </div>
+
+  <div hlmAccordionItem>
+    <button hlmAccordionTrigger>
+      <div class="flex items-center gap-3">
+        <ng-icon name="lucideShoppingBag" hlm hlmAccIcon />
+        Dashboard
+      </div>
+      <ng-icon name="lucideChevronDown" hlm hlmAccIcon />
+    </button>
+    <hlm-accordion-content
+      >Yes. It adheres to the WAI-ARIA design pattern.</hlm-accordion-content
+    >
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div
+  class="flex p-2 px-6 w-screen justify-between items-center h-16 shadow-lg"
+  *transloco="let t; prefix: 'HEADER.OPTIONS'"
+>
+  <app-side-bar />
+  <div class="flex gap-6 items-end">
+    <app-search-command/>
+    <brn-popover>
+      <button brnPopoverTrigger class="cursor-pointer">
+        <div
+          *ngIf="defaultLanguage === 'pt-BR'"
+          class="flex gap-3 items-center"
+        >
+          <span>PT</span>
+          <img src="assets/flags/brazil.svg" class="h-7 w-7" />
+        </div>
+        <div *ngIf="defaultLanguage === 'es'" class="flex gap-3 items-center">
+          <span>ES</span>
+          <img src="assets/flags/spain.svg" class="h-7 w-7" />
+        </div>
+        <div *ngIf="defaultLanguage === 'en'" class="flex gap-3 items-center">
+          <span>EN</span>
+          <img src="assets/flags/usa.svg" class="h-7 w-7" />
+        </div>
+      </button>
+      <div
+        hlmPopoverContent
+        *brnPopoverContent="let ctx"
+        class="w-full flex justify-center items-center flex-col"
+      >
+        <img
+          src="assets/flags/brazil.svg"
+          class="h-9 w-9 p-2"
+          (click)="changeLanguage('pt-BR')"
+          [ngClass]="{
+            'bg-gray-300 rounded-full': defaultLanguage === 'pt-BR'
+          }"
+        />
+        <img
+          src="assets/flags/spain.svg"
+          class="h-9 w-9 p-2"
+          (click)="changeLanguage('es')"
+          [ngClass]="{
+            'bg-gray-300 rounded-full': defaultLanguage === 'es'
+          }"
+        />
+        <img
+          src="assets/flags/usa.svg"
+          class="h-9 w-9 p-2"
+          (click)="changeLanguage('en')"
+          [ngClass]="{
+            'bg-gray-300 rounded-full': defaultLanguage === 'en'
+          }"
+        />
+      </div>
+    </brn-popover>
+  </div>
+</div>

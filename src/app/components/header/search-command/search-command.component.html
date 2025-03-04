@@ -1,0 +1,100 @@
+<hlm-dialog>
+  <button brnDialogTrigger hlmBtn><ng-icon name="lucideSearch" /></button>
+  <hlm-dialog-content *brnDialogContent="let ctx">
+    <hlm-dialog-header>
+      <h3 brnDialogTitle hlm>Pesquisa</h3>
+    </hlm-dialog-header>
+    <hlm-command>
+      <hlm-command-search>
+        <ng-icon hlm name="lucideSearch" />
+
+        <input
+          type="text"
+          hlm-command-search-input
+          placeholder="Procure uma página..."
+        />
+      </hlm-command-search>
+
+      <hlm-command-list>
+        <hlm-command-group>
+          <hlm-command-group-label>Sugestões</hlm-command-group-label>
+
+          <button routerLink="log" hlm-command-item value="Inicio" (click)="closeDialog()">
+            <ng-icon hlm name="lucideHouse" hlmCommandIcon />
+            Inicio
+          </button>
+
+          <button hlm-command-item value="Relatórios">
+            <ng-icon hlm name="lucideSheet" hlmCommandIcon />
+            Relatórios
+          </button>
+
+          <button hlm-command-item value="Financeiro">
+            <ng-icon hlm name="lucideDollarSign" hlmCommandIcon />
+            Financeiro
+          </button>
+
+          <button hlm-command-item value="Produtos">
+            <ng-icon hlm name="lucideBox" hlmCommandIcon />
+            Produtos
+          </button>
+        </hlm-command-group>
+
+        <hlm-command-separator />
+
+        <hlm-command-group>
+          <hlm-command-group-label>Funcionalidades</hlm-command-group-label>
+
+          <button hlm-command-item value="Analises">
+            <ng-icon hlm name="lucideAlignEndHorizontal" hlmCommandIcon />
+            Análises
+          </button>
+
+          <button hlm-command-item value="Metas">
+            <ng-icon hlm name="lucideGoal" hlmCommandIcon />
+            Metas
+          </button>
+
+          <button hlm-command-item value="Promoções">
+            <ng-icon hlm name="lucideTicketPercent" hlmCommandIcon />
+            Promoções
+          </button>
+
+          <button hlm-command-item value="Pedidos">
+            <ng-icon hlm name="lucideReceiptText" hlmCommandIcon />
+            Pedidos
+          </button>
+
+          <button hlm-command-item value="Clientes">
+            <ng-icon hlm name="lucideUsers" hlmCommandIcon />
+            Clientes
+          </button>
+        </hlm-command-group>
+
+        <hlm-command-group>
+          <hlm-command-group-label>Configurações</hlm-command-group-label>
+
+          <button hlm-command-item value="Perfil">
+            <ng-icon hlm name="lucideUser" hlmCommandIcon />
+            Perfil
+          </button>
+
+          <button hlm-command-item value="Configurações">
+            <ng-icon hlm name="lucideSettings2" hlmCommandIcon />
+            Preferencias
+          </button>
+
+          <button hlm-command-item value="Sair">
+            <ng-icon hlm name="lucideLogOut" hlmCommandIcon />
+            Sair
+          </button>
+        </hlm-command-group>
+      </hlm-command-list>
+
+      <div *brnCommandEmpty hlmCommandEmpty>Nenhum resultado encontrado.</div>
+    </hlm-command>
+    <hlm-dialog-footer>
+      <button hlmBtn type="submit">Save changes</button>
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>
