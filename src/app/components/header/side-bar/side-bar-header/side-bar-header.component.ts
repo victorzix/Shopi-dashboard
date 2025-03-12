@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IAdmin } from '../../../../interfaces/admin/IAdmin';
+import { IAdmin } from '../../../../interfaces/admin/admin.interface';
 import { HlmSkeletonComponent } from '../../../libs/ui/ui-skeleton-helm/src/lib/hlm-skeleton.component';
 import {
   HlmSheetDescriptionDirective,

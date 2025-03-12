@@ -1,0 +1,140 @@
+<app-create-category-float-button
+  (categoryCreated)="addNewCategoryToList($event)"
+/>
+
+<div class="px-10 py-6 flex flex-col gap-3">
+  <h1 class="font-bold text-2xl text-orange-600">Categorias</h1>
+  <form
+    class="w-full shadow-lg shadow-orange-600 p-5 h-32 rounded-xl border border-1 flex items-center gap-3"
+    [formGroup]="filterform"
+    (ngSubmit)="filterCategories()"
+  >
+    <label for="name" class="flex flex-col gap-1 w-[40%]" hlmLabel>
+      O que está procurando?
+      <div hlmInputWrapper class="relative">
+        <ng-icon
+          hlmInputIcon
+          name="lucideSearch"
+          class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5"
+        />
+        <input
+          type="text"
+          formControlName="name"
+          hlmInput
+          name="name"
+          placeholder="Nome da categoria"
+          class="pl-10 w-full"
+          [disabled]="isLoading"
+        />
+      </div>
+    </label>
+
+    <label hlmLabel for="visible" class="flex flex-col gap-1 w-[30%]">
+      Visibilidade
+      <brn-select
+        formControlName="visible"
+        class="inline-block w-full"
+        placeholder="Visibilidade"
+        [disabled]="isLoading"
+      >
+        <hlm-select-trigger class="w-full">
+          <hlm-select-value />
+        </hlm-select-trigger>
+        <hlm-select-content>
+          <hlm-option [value]="true">Ativo</hlm-option>
+          <hlm-option [value]="false">Não ativo</hlm-option>
+        </hlm-select-content>
+      </brn-select>
+    </label>
+
+    <label for="submit" class="flex flex-col gap-1 w-[30%]" hlmLabel>
+      &nbsp;
+      <button
+        name="submit"
+        type="submit"
+        [disabled]="isLoading"
+        hlmBtn
+        class="bg-orange-500 w-full cursor-pointer hover:scale-105 hover:bg-white hover:text-black hover:shadow-xl transition-all ease-in-out duration-300 disabled:bg-black"
+      >
+        Pesquisar
+      </button>
+    </label>
+  </form>
+
+  <app-categories-table
+    [categories]="categories"
+    [isLoading]="isLoading"
+  ></app-categories-table>
+
+  <div class="flex justify-center gap-2">
+    <div class="flex">
+      <button
+        (click)="changePage(1)"
+        [disabled]="page <= 1 || isLoading"
+        class="text-black flex justify-center items-center text-xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
+      >
+        <ng-icon name="lucideChevronFirst" />
+      </button>
+
+      <button
+        (click)="changePage(page - 5)"
+        [disabled]="page <= 1 || isLoading"
+        class="text-black flex justify-center items-center text-2xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
+      >
+        <ng-icon name="lucideChevronsLeft" />
+      </button>
+
+      <button
+        (click)="prevPage()"
+        [disabled]="page <= 1 || isLoading"
+        class="text-black flex justify-center items-center text-3xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
+      >
+        <ng-icon name="lucideChevronLeft" />
+      </button>
+    </div>
+
+    <ng-container *ngFor="let p of getPagesToDisplay()">
+      <div class="flex items-center">
+        <button
+          *ngIf="p !== -1"
+          (click)="changePage(p)"
+          [class.text-orange-600]="p === page"
+          [class.text-xl]="p === page"
+          [class.font-bold]="p === page"
+          [class.disabled]="p === page"
+          class="py-2 px-4 rounded hover:scale-150 transition-all duration-200 ease-in-out cursor-pointer"
+        >
+          {{ p }}
+        </button>
+
+        <span *ngIf="p === -1" class="text-gray-500 px-2">...</span>
+      </div>
+    </ng-container>
+
+    <div class="flex">
+      <button
+        (click)="nextPage()"
+        [disabled]="page == totalPages || isLoading"
+        class="text-black flex justify-center items-center text-3xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
+      >
+        <ng-icon name="lucideChevronRight" />
+      </button>
+
+      <button
+        (click)="changePage(page + 5)"
+        [disabled]="page == totalPages || isLoading"
+        class="text-black flex justify-center items-center text-2xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
+      >
+        <ng-icon name="lucideChevronsRight" />
+      </button>
+
+      <button
+        (click)="changePage(totalPages)"
+        [disabled]="page == totalPages || isLoading"
+        class="text-black flex justify-center items-center text-xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
+      >
+        <ng-icon name="lucideChevronLast" />
+      </button>
+    </div>
+  </div>
+</div>

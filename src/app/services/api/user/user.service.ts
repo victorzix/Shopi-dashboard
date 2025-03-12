@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { httpHeaders } from '../../../common/httpCommons';
-import { ILoginResponse } from '../../../interfaces/auth/ilogin-response';
 import { environment } from '../../../../environments/environment.development';
 import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
-import { IAdmin } from '../../../interfaces/admin/IAdmin';
-import ToastUtils from '../../../../utils/toast-utils';
-import ErrorHandlerUtils from '../../../../utils/error-handler-utils';
+import { IAdmin } from '../../../interfaces/admin/admin.interface';
+import ErrorHandlerUtils from '../../../../utils/error-handler.utils';
 
 @Injectable({
   providedIn: 'root',

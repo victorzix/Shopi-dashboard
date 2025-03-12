@@ -1,12 +1,12 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ILoginData } from '../../../interfaces/auth/ilogin-data';
+import { ILoginData } from '../../../interfaces/auth/login-data.interface';
 import { httpHeaders } from '../../../common/httpCommons';
 import { lastValueFrom } from 'rxjs';
-import { ILoginResponse } from '../../../interfaces/auth/ilogin-response';
+import { ILoginResponse } from '../../../interfaces/auth/login-response.interface';
 import { environment } from '../../../../environments/environment.development';
-import { IRegisterData } from '../../../interfaces/auth/iregister-data';
-import { IRegisterResponse } from '../../../interfaces/auth/iregister-response';
+import { IRegisterData } from '../../../interfaces/auth/register-data.interface';
+import { IRegisterResponse } from '../../../interfaces/auth/register-response.interface';
 
 @Injectable({
   providedIn: 'root',

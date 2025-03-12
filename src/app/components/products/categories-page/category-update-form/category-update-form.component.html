@@ -1,0 +1,53 @@
+<button
+  brnDialogTrigger
+  class="hover:bg-orange-400 hover:text-white flex focus-visible:bg-accent focus-visible:text-accent-foreground group hover:text-accent-foreground items-center outline-none pl-8 px-2 py-1.5 relative rounded-sm select-none text-sm transition-colors w-full"
+>
+  Editar
+</button>
+<hlm-dialog-content *brnDialogContent="let ctx">
+  <hlm-dialog-header>
+    <h3 hlmDialogTitle hlm>
+      Editar categoria
+      <span class="text-orange-600">{{ category?.name }} </span>
+    </h3>
+  </hlm-dialog-header>
+  <form
+    class="flex flex-col gap-3 w-[25rem] px-3"
+    (ngSubmit)="updateCategory()"
+    [formGroup]="updateCategoryForm"
+  >
+    <label for="name" class="w-full" hlmLabel>
+      Nome da categoria
+      <input
+        name="name"
+        [placeholder]="category?.name"
+        formControlName="name"
+        class="w-full"
+        formControlName="name"
+        hlmInput
+      />
+    </label>
+    <label for="description">
+      Descrição da categoria
+      <textarea
+        label="Descrição w-full"
+        [placeholder]="
+          category?.description || 'Digite a descrição da categoria'
+        "
+        formControlName="description"
+        class="w-full min-h-[6rem]"
+        formControlName="description"
+        hlmInput
+      ></textarea>
+    </label>
+    <hlm-dialog-footer>
+      <button
+        hlmBtn
+        type="submit"
+        class="w-full bg-orange-600 text-white hover:text-black hover:bg-white hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer"
+      >
+        Atualizar
+      </button>
+    </hlm-dialog-footer>
+  </form>
+</hlm-dialog-content>

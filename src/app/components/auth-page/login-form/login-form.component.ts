@@ -2,11 +2,11 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/api/auth/auth.service';
-import { ILoginData } from '../../../interfaces/auth/ilogin-data';
+import { ILoginData } from '../../../interfaces/auth/login-data.interface';
 import { Router } from '@angular/router';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import ToastUtils from '../../../../utils/toast-utils';
+import ToastUtils from '../../../../utils/toast.utils';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({

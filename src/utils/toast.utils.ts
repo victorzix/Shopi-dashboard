@@ -20,4 +20,12 @@ export default class ToastUtils {
       toast.dismiss(toastId);
     }, duration);
   }
+
+  public static showLoadingToast(title: string, description?: string): string | number {
+    return toast.loading(title, { description, duration: Infinity });
+  }
+
+  public static dismissLoadingToast(toastId: number | string) {
+    toast.dismiss(toastId);
+  }
 }

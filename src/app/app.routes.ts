@@ -16,9 +16,10 @@ export const routes: Routes = [
     path: '',
     component: LoggedLayoutComponent,
     canActivate: [unloggedGuard],
+    title:'Dashboard',
     children: [
       {
-        path: '',
+        path: 'dashboard',
         loadComponent: () =>
           import('./pages/home-screen/home-screen.component').then(
             (c) => c.HomeScreenComponent
@@ -26,9 +27,30 @@ export const routes: Routes = [
         title: 'Shopi',
       },
       {
-        path: 'log',
-        component: LoginFormComponent,
-      },
+        path: 'produtos',
+        loadComponent: () =>
+          import('./pages/products/products-page/products-page.component').then(
+            (c) => c.ProductsPageComponent
+          ),
+          children: [
+            {
+              path: 'categorias',
+              loadComponent: () =>
+                import('./pages/products/categories-page/categories-page.component').then(
+                  (c) => c.CategoriesPageComponent
+                ),
+                title: 'Categorias',
+            },
+            {
+              path: 'analises',
+              loadComponent: () =>
+                import('./pages/products/analysis-page/analysis-page.component').then(
+                  (c) => c.AnalysisPageComponent
+                ),
+                title: 'Análises',
+            }
+          ]
+      }
     ],
   },
 ];

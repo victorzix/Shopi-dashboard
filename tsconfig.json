@@ -57,6 +57,18 @@
       ],
       "@spartan-ng/ui-dialog-helm": [
         ".\\src/app/components/libs/ui/ui-dialog-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-table-helm": [
+        ".\\src/app/components/libs/ui/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-menu-helm": [
+        ".\\src/app/components/libs/ui/ui-menu-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-select-helm": [
+        ".\\src/app/components/libs/ui/ui-select-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-pagination-helm": [
+        ".\\src/app/components/libs/ui/ui-pagination-helm/src/index.ts"
       ]
     }
   },

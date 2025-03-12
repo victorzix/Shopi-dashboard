@@ -10,7 +10,7 @@ import {
   HlmSheetFooterComponent,
 } from '@spartan-ng/ui-sheet-helm';
 import { UserService } from '../../../services/api/user/user.service';
-import { IAdmin } from '../../../interfaces/admin/IAdmin';
+import { IAdmin } from '../../../interfaces/admin/admin.interface';
 import { CommonModule } from '@angular/common';
 import { HlmSeparatorDirective } from '@spartan-ng/ui-separator-helm';
 import { BrnSeparatorComponent } from '@spartan-ng/brain/separator';

@@ -7,7 +7,7 @@ import {
   HlmAccordionTriggerDirective,
 } from '@spartan-ng/ui-accordion-helm';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown, lucideShoppingBag } from '@ng-icons/lucide';
+import { lucideChevronDown, lucideShoppingBag, lucideBox } from '@ng-icons/lucide';
 import { CommonModule } from '@angular/common';
 import { ListItemComponent } from './list-item/list-item.component';
 import { Router } from '@angular/router';
@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
     CommonModule,
     ListItemComponent,
   ],
-  viewProviders: [provideIcons({ lucideShoppingBag, lucideChevronDown })],
+  viewProviders: [provideIcons({ lucideShoppingBag, lucideChevronDown, lucideBox })],
   templateUrl: './side-bar-body.component.html',
 })
 export class SideBarBodyComponent {

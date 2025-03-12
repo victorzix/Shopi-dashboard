@@ -1,0 +1,51 @@
+<hlm-dialog #dialog>
+  <button
+    brnDialogTrigger
+    class="shadow-xl shadow-red-300 h-16 w-16 bg-orange-600 rounded-[1.3em] absolute shadow-lg right-10 bottom-20 transition-all duration-100 ease-in hover:scale-80 hover:rounded-[50%] flex justify-center items-center cursor-pointer"
+  >
+    <span class="text-2xl text-white">+</span>
+  </button>
+  <hlm-dialog-content *brnDialogContent="let ctx">
+    <hlm-dialog-header>
+      <h3 hlmDialogTitle hlm>Criar categoria</h3>
+    </hlm-dialog-header>
+    <form
+      class="flex flex-col gap-3 w-[25rem] px-3"
+      (ngSubmit)="createCategory(dialog)"
+      [formGroup]="createCategoryForm"
+    >
+      <label for="name" class="w-full" hlmLabel>
+        Nome da categoria
+        <input
+          name="name"
+          placeholder="Digite o nome da categoria"
+          formControlName="name"
+          class="w-full"
+          formControlName="name"
+          hlmInput
+        />
+      </label>
+      <label for="description">
+        Descrição da categoria
+        <textarea
+          label="Descrição w-full"
+          placeholder="Digite a descrição da categoria"
+          formControlName="description"
+          class="w-full min-h-[6rem]"
+          formControlName="description"
+          hlmInput
+        ></textarea>
+      </label>
+      <hlm-dialog-footer>
+        <button
+          hlmBtn
+          [disabled]="createCategoryForm.invalid"
+          type="submit"
+          class="w-full bg-orange-600 text-white hover:text-black hover:bg-white hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer"
+        >
+          Criar
+        </button>
+      </hlm-dialog-footer>
+    </form>
+  </hlm-dialog-content>
+</hlm-dialog>

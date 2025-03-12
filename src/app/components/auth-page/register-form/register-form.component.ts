@@ -2,12 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/api/auth/auth.service';
-import { IRegisterData } from '../../../interfaces/auth/iregister-data';
+import { IRegisterData } from '../../../interfaces/auth/register-data.interface';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { Router } from '@angular/router';
-import ToastUtils from '../../../../utils/toast-utils';
+import ToastUtils from '../../../../utils/toast.utils';
 
 @Component({
   selector: 'app-register-form',
