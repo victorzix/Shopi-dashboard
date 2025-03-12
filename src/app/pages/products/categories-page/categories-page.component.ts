@@ -52,12 +52,13 @@ import { CreateCategoryFloatButtonComponent } from '../../../components/products
   styleUrl: './categories-page.component.scss',
 })
 export class CategoriesPageComponent {
+  private currentFilters: IFilterCategory = {};
   public categories: ICategory[] = [];
   public isLoading = true;
   public limit = 6;
+  public itemPerPage = 5;
   public page = 1;
   public totalPages = 0;
-  public itemPerPage = 5;
 
   constructor(private readonly categoryService: CategoryService) {}
 
@@ -81,11 +82,11 @@ export class CategoriesPageComponent {
       parentId: this.filterform.value.parentId || undefined,
       visible: this.filterform.value.visible ?? true,
       limit: this.limit,
-      offset: this.page,
+      offset: this.page - 1,
     };
 
-    const filteredData = filterUndefined(formData);
-    await this.loadCategories(filteredData);
+    this.currentFilters = filterUndefined(formData);
+    await this.loadCategories(this.currentFilters);
   }
 
   async loadCategories(filters?: IFilterCategory) {
@@ -102,9 +103,9 @@ export class CategoriesPageComponent {
     );
 
     if (data) {
-      this.totalPages = data.total / this.itemPerPage;
+      this.totalPages = Math.ceil(data.total / this.itemPerPage);
     }
-
+    console.log(this.totalPages)
     this.categories = data?.categories ?? [];
     this.isLoading = false;
   }
@@ -120,6 +121,7 @@ export class CategoriesPageComponent {
     if(page <= 1) this.page = 1;
 
     await this.loadCategories({
+      ...this.currentFilters,
       offset: (this.page - 1) * this.itemPerPage,
       limit: this.limit,
       nameOrder: 'asc',

@@ -19,6 +19,7 @@ export class CategoryService {
   async listCategories(filter?: IFilterCategory): Promise<IListCategoryResponse | null> {
     try {
       const params = new HttpParams({ fromObject: filter as any });
+
       const result = this.http.get<IListCategoryResponse>(
         `${environment.apiUrl}/category/list`,
         {
@@ -33,7 +34,6 @@ export class CategoryService {
       const response = await lastValueFrom(result);
       return response;
     } catch (err: any) {
-      console.log(err)
       ErrorHandlerUtils.handleError(err);
       return null;
     }

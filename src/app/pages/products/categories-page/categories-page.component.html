@@ -98,11 +98,12 @@
         <button
           *ngIf="p !== -1"
           (click)="changePage(p)"
-          [class.text-orange-600]="p === page"
-          [class.text-xl]="p === page"
-          [class.font-bold]="p === page"
-          [class.disabled]="p === page"
-          class="py-2 px-4 rounded hover:scale-150 transition-all duration-200 ease-in-out cursor-pointer"
+          [disabled]="p === page"
+          [ngClass]="{
+            'text-orange-600 text-xl font-bold disabled:hover:scale-100 disabled:cursor-not-allowed': p === page,
+            'hover:scale-150 transition-all duration-200 ease-in-out cursor-pointer': true
+          }"
+          class="py-2 px-4 rounded"
         >
           {{ p }}
         </button>
@@ -114,7 +115,7 @@
     <div class="flex">
       <button
         (click)="nextPage()"
-        [disabled]="page == totalPages || isLoading"
+        [disabled]="page >= totalPages || isLoading"
         class="text-black flex justify-center items-center text-3xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
       >
         <ng-icon name="lucideChevronRight" />
@@ -122,7 +123,7 @@
 
       <button
         (click)="changePage(page + 5)"
-        [disabled]="page == totalPages || isLoading"
+        [disabled]="page >= totalPages || isLoading"
         class="text-black flex justify-center items-center text-2xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
       >
         <ng-icon name="lucideChevronsRight" />
@@ -130,7 +131,7 @@
 
       <button
         (click)="changePage(totalPages)"
-        [disabled]="page == totalPages || isLoading"
+        [disabled]="page >= totalPages || isLoading"
         class="text-black flex justify-center items-center text-xl cursor-pointer px-1 hover:text-orange-600 hover:scale-125 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:scale-100 disabled:text-gray-500"
       >
         <ng-icon name="lucideChevronLast" />
