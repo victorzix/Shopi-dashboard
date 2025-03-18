@@ -22,7 +22,5 @@ import { RegisterFormComponent } from "../../components/auth-page/register-form/
   styleUrl: './auth-page.component.scss',
 })
 export class AuthPageComponent {
-  ngOnInit() {
-    console.log(document.documentElement.classList)
-  }
+
 }

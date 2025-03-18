@@ -64,6 +64,7 @@
   <app-categories-table
     [categories]="categories"
     [isLoading]="isLoading"
+    (categoryDeleted)="categoryDeleted()"
   ></app-categories-table>
 
   <div class="flex justify-center gap-2">

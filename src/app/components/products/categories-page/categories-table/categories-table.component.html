@@ -3,60 +3,76 @@
     Lista de categorias cadastradas.
   </hlm-caption>
 
-  <hlm-dialog>
-    <hlm-trow>
-      <hlm-th class="w-[25%] text-left p-2">Categoria</hlm-th>
-      <hlm-th class="w-[50%] text-left p-2">Descrição</hlm-th>
-      <hlm-th class="w-[25%] text-left p-2 flex justify-center"
-        >Visibilidade</hlm-th
+  <hlm-trow>
+    <hlm-th class="w-[25%] text-left p-2">Categoria</hlm-th>
+    <hlm-th class="w-[50%] text-left p-2">Descrição</hlm-th>
+    <hlm-th class="w-[25%] text-left p-2 flex justify-center"
+      >Visibilidade</hlm-th
+    >
+  </hlm-trow>
+
+  <ng-container *ngIf="!isLoading; else skeletons">
+    <div [brnCtxMenuTriggerFor]="menu">
+      <hlm-trow
+        *ngFor="let category of categories; trackBy: trackById"
+        class="hover:bg-gray-200 transition-all duration-200 ease-in-out even:bg-gray-50"
+        (contextmenu)="handleRightClick(category)"
       >
-    </hlm-trow>
-
-    <ng-container *ngIf="!isLoading; else skeletons">
-      <div [brnCtxMenuTriggerFor]="menu">
-        <hlm-trow
-          *ngFor="let category of categories; trackBy: trackById"
-          class="hover:bg-gray-200 transition-all duration-200 ease-in-out even:bg-gray-50"
-          (contextmenu)="handleRightClick(category)"
-        >
-          <hlm-td class="w-[25%] h-18 p-2 pr-8">{{ category.name }}</hlm-td>
-          <hlm-td class="w-[50%] h-18 p-2 pr-10 flex overflow-hidden">
-            <span class="truncate">{{ category.description }}</span>
-          </hlm-td>
-          <hlm-td class="w-[25%] h-18 p-2 pr-8 flex justify-center">{{
-            category.visible ? "Ativo" : "Não ativo"
-          }}</hlm-td>
-        </hlm-trow>
-      </div>
-      <ng-template #menu>
-        <hlm-menu class="w-64">
-          <hlm-menu-group>
-            <app-category-update-form [category]="clickedCategory" />
-            <button
-              class="hover:bg-orange-500 hover:text-white"
-              inset
-              hlmMenuItem
-            >
-              Remover
-            </button>
-            <button
-              class="hover:bg-orange-600 hover:text-white"
-              inset
-              hlmMenuItem
-            >
-              Informações
-            </button>
-          </hlm-menu-group>
-        </hlm-menu>
-      </ng-template>
-    </ng-container>
-
-    <ng-template #skeletons>
-      <hlm-trow *ngFor="let _ of [].constructor(6); let i = index">
-        <hlm-td class="w-full p-2">
-          <hlm-skeleton class="w-full bg-gray-300 h-12" />
+        <hlm-td class="w-[25%] h-18 p-2 pr-8">
+          {{ category.name }}
         </hlm-td>
+        <hlm-td
+          class="w-[50%] h-18 p-2 pr-10 flex overflow-hidden"
+          [class]="category.description == 'Sem descrição' ? `text-gray-500` : ''"
+        >
+          <span class="truncate">{{ category.description }}</span>
+        </hlm-td>
+        <hlm-td class="w-[25%] h-18 p-2 pr-8 flex justify-center">{{
+          category.visible ? "Ativo" : "Não ativo"
+        }}</hlm-td>
       </hlm-trow>
+    </div>
+    <ng-template #menu>
+      <hlm-menu class="w-64">
+        <hlm-menu-group>
+          <button
+            (click)="deleteCategory()"
+            [class]="
+              _hlmMenuItemClasses +
+              ' cursor-pointer transition-all ease-in-out duration-200 hover:text-red-600'
+            "
+          >
+            Remover
+          </button>
+
+          <button
+            (click)="openDialog()"
+            [brnDialogTriggerFor]="infoForm"
+            [class]="
+              _hlmMenuItemClasses +
+              ' cursor-pointer transition-all ease-in-out duration-200 hover:text-blue-600'
+            "
+          >
+            Ver Detalhes
+          </button>
+        </hlm-menu-group>
+      </hlm-menu>
     </ng-template>
-  </hlm-dialog>
+  </ng-container>
+
+  <ng-template #skeletons>
+    <hlm-trow *ngFor="let _ of [].constructor(6); let i = index">
+      <hlm-td class="w-full p-2">
+        <hlm-skeleton class="w-full bg-gray-300 h-12" />
+      </hlm-td>
+    </hlm-trow>
+  </ng-template>
 </hlm-table>
+
+<hlm-dialog #infoForm (closed)="closeDialog()">
+  <app-category-info
+    (categoryUpdated)="updateCategoryInList($event)"
+    [category]="clickedCategory"
+    [isDialogClosed]="dialogClosed"
+  ></app-category-info>
+</hlm-dialog>

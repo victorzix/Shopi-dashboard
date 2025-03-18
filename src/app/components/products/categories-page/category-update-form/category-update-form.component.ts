@@ -1,13 +1,10 @@
 import { Component, Input } from '@angular/core';
 import {
-  BrnDialogComponent,
   BrnDialogContentDirective,
   BrnDialogTriggerDirective,
 } from '@spartan-ng/brain/dialog';
 import {
-  HlmDialogComponent,
   HlmDialogContentComponent,
-  HlmDialogDescriptionDirective,
   HlmDialogFooterComponent,
   HlmDialogHeaderComponent,
   HlmDialogModule,
@@ -21,6 +18,7 @@ import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { CommonModule } from '@angular/common';
+import { hlmMenuItemVariants } from '@spartan-ng/ui-menu-helm';
 
 @Component({
   selector: 'app-category-update-form',
@@ -43,6 +41,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CategoryUpdateFormComponent {
   @Input() public category: ICategory | null = null;
+  protected readonly _hlmMenuItemClasses = hlmMenuItemVariants({ inset: true });
 
   constructor(private readonly categoryService: CategoryService) {}
 

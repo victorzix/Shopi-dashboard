@@ -61,7 +61,7 @@ export class CreateCategoryFloatButtonComponent {
   async createCategory(dialog: HlmDialogComponent) {
     const formData: ICreateCategory = {
       name: this.createCategoryForm.value.name || '',
-      description: this.createCategoryForm.value.description || undefined,
+      description: this.createCategoryForm.value.description || 'Sem descrição',
     };
     const category = await this.categoryService.createCategory(formData);
     if (category) {

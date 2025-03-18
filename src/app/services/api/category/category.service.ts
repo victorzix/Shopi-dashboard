@@ -11,12 +11,13 @@ import { IUpdateCategory } from '../../../interfaces/products/categories/update-
 import ToastUtils from '../../../../utils/toast.utils';
 import { IListCategoryResponse } from '../../../interfaces/products/categories/list-category-response.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CategoryService {
   constructor(private http: HttpClient) {}
-  async listCategories(filter?: IFilterCategory): Promise<IListCategoryResponse | null> {
+
+  async listCategories(
+    filter?: IFilterCategory
+  ): Promise<IListCategoryResponse | null> {
     try {
       const params = new HttpParams({ fromObject: filter as any });
 
@@ -74,7 +75,10 @@ export class CategoryService {
     }
   }
 
-  async updateCategory(id: string, dto: IUpdateCategory): Promise<ICategory | null> {
+  async updateCategory(
+    id: string,
+    dto: IUpdateCategory
+  ): Promise<ICategory | null> {
     try {
       const toastId = ToastUtils.showLoadingToast(
         `Atualizando categoria ${id}...`,
@@ -106,6 +110,33 @@ export class CategoryService {
     } catch (err: any) {
       ErrorHandlerUtils.handleError(err);
       return null;
+    }
+  }
+
+  async deleteCategory(id: string): Promise<void> {
+    try {
+      const toastId = ToastUtils.showLoadingToast(
+        `Removendo categoria...`,
+        'Aguarde enquanto a categoria é deletada.'
+      );
+      const result = this.http.delete<void>(
+        `${environment.apiUrl}/category/delete/${id}`,
+        {
+          ...httpHeaders,
+          headers: {
+            ...httpHeaders.headers,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+
+      await lastValueFrom(result);
+      ToastUtils.dismissLoadingToast(toastId);
+
+      ToastUtils.showToast('success', 'Categoria deletada!', 3000);
+
+    } catch (err: any) {
+      ErrorHandlerUtils.handleError(err);
     }
   }
 }

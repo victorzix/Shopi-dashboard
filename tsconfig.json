@@ -69,6 +69,12 @@
       ],
       "@spartan-ng/ui-pagination-helm": [
         ".\\src/app/components/libs/ui/ui-pagination-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-badge-helm": [
+        ".\\src/app/components/libs/ui/ui-badge-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-spinner-helm": [
+        ".\\src/app/components/libs/ui/ui-spinner-helm/src/index.ts"
       ]
     }
   },

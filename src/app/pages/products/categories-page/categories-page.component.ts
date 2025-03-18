@@ -10,6 +10,7 @@ import { HlmLabelModule } from '@spartan-ng/ui-label-helm';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { CommonModule } from '@angular/common';
 import {
+  lucideCheckCheck,
   lucideChevronFirst,
   lucideChevronLast,
   lucideChevronLeft,
@@ -17,6 +18,7 @@ import {
   lucideChevronsLeft,
   lucideChevronsRight,
   lucideSearch,
+  lucideX,
 } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/ui-select-helm';
@@ -46,8 +48,11 @@ import { CreateCategoryFloatButtonComponent } from '../../../components/products
       lucideChevronsLeft,
       lucideChevronFirst,
       lucideChevronLast,
+      lucideCheckCheck,
+      lucideX
     }),
   ],
+  providers: [CategoryService],
   templateUrl: './categories-page.component.html',
   styleUrl: './categories-page.component.scss',
 })
@@ -56,7 +61,6 @@ export class CategoriesPageComponent {
   public categories: ICategory[] = [];
   public isLoading = true;
   public limit = 6;
-  public itemPerPage = 5;
   public page = 1;
   public totalPages = 0;
 
@@ -84,8 +88,8 @@ export class CategoriesPageComponent {
       limit: this.limit,
       offset: this.page - 1,
     };
-
     this.currentFilters = filterUndefined(formData);
+
     await this.loadCategories(this.currentFilters);
   }
 
@@ -98,14 +102,14 @@ export class CategoriesPageComponent {
       nameOrder: 'asc',
     };
 
+    this.currentFilters = filterUndefined(filters ?? paginationDefaults);
     const data = await this.categoryService.listCategories(
       filters ? filters : paginationDefaults
     );
 
     if (data) {
-      this.totalPages = Math.ceil(data.total / this.itemPerPage);
+      this.totalPages = Math.ceil(data.total / this.limit);
     }
-    console.log(this.totalPages)
     this.categories = data?.categories ?? [];
     this.isLoading = false;
   }
@@ -122,7 +126,7 @@ export class CategoriesPageComponent {
 
     await this.loadCategories({
       ...this.currentFilters,
-      offset: (this.page - 1) * this.itemPerPage,
+      offset: (this.page - 1) * this.limit,
       limit: this.limit,
       nameOrder: 'asc',
     });
@@ -138,6 +142,10 @@ export class CategoriesPageComponent {
       this.page--;
       await this.changePage(this.page);
     }
+  }
+
+  async categoryDeleted() {
+    await this.loadCategories(this.currentFilters);
   }
 
   getPagesToDisplay(): number[] {
