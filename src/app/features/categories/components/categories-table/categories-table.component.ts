@@ -23,6 +23,7 @@ import { CategoryService } from '../../../../features/categories/services/catego
 import { CategoryInfoComponent } from '../category-info/category-info.component';
 import { BrnDialogTriggerDirective } from '@spartan-ng/brain/dialog';
 import { Category } from '@core/models/categories/category.model';
+import { CategoryStore } from '../../store/category.store';
 
 @Component({
   selector: 'app-categories-table',
@@ -42,6 +43,7 @@ import { Category } from '@core/models/categories/category.model';
     HlmDialogComponent,
     CategoryInfoComponent,
   ],
+  providers: [CategoryStore],
   viewProviders: [provideIcons({ lucideChevronDown })],
   templateUrl: './categories-table.component.html',
   styleUrl: './categories-table.component.scss',
@@ -52,23 +54,23 @@ export class CategoriesTableComponent {
   @Output() categoryDeleted = new EventEmitter<void>();
   dialogClosed = true;
   protected readonly _hlmMenuItemClasses = hlmMenuItemVariants({ inset: true });
-  public contextCategory: Category = { id: '', name: '', visible: false };
-  public clickedCategory: Category = { id: '', name: '', visible: false };
   public expandedCategoryId: string | null = null;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private categoryStore: CategoryStore
+  ) {}
 
   trackById(index: number, category: any): number {
     return category.id;
   }
 
   handleRightClick(category: Category): void {
-    this.contextCategory = category;
+    this.categoryStore.setSelectedCategory(category);
   }
 
   openDialog(): void {
     this.dialogClosed = false;
-    this.clickedCategory = this.contextCategory;
   }
 
   closeDialog() {
@@ -88,10 +90,12 @@ export class CategoriesTableComponent {
   }
 
   async deleteCategory() {
-    if (this.clickedCategory) {
-      await this.categoryService.deleteCategory(this.clickedCategory.id);
+    const selectedCategory = await this.categoryStore.selectedCategory$.toPromise();
+
+    if (selectedCategory) {
+      await this.categoryService.deleteCategory(selectedCategory.id);
       const index = this.categories.findIndex(
-        (category) => this.clickedCategory?.id === category.id
+        (category) => selectedCategory.id === category.id
       );
 
       if (index !== -1) {

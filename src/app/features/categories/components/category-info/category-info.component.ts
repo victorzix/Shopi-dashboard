@@ -43,10 +43,12 @@ import {
 import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { NgIcon } from '@ng-icons/core';
-import { SubcategoriesListComponent } from "./subcategories/subcategories-list/subcategories-list.component";
+import { SubcategoriesListComponent } from './subcategories/subcategories-list/subcategories-list.component';
 import { HlmSpinnerComponent } from '@shared/libs/ui/ui-spinner-helm/src';
 import { Category } from '@core/models/categories/category.model';
 import { UpdateCategory } from '../../models/update-category.model';
+import { CategoryStore } from '../../store/category.store';
+import { firstValueFrom, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-category-info',
@@ -62,31 +64,49 @@ import { UpdateCategory } from '../../models/update-category.model';
     FormsModule,
     HlmSpinnerComponent,
     NgIcon,
-    SubcategoriesListComponent
-],
+    SubcategoriesListComponent,
+  ],
   templateUrl: './category-info.component.html',
   styleUrl: './category-info.component.scss',
 })
 export class CategoryInfoComponent {
   @Output() categoryUpdated = new EventEmitter<Category>();
   @Input() isDialogClosed = false;
-  @Input() category: Category = {
-    id: '',
-    name: '',
-    description: '',
-    visible: false,
-  };
 
   isUpdateLoading = false;
-  originalName: string = this.category.name || '';
-  originalDescription: string = this.category.description || '';
+  originalName: string = '';
+  originalDescription: string = '';
   isEditingTitle: boolean = false;
   isEditingDescription: boolean = false;
+  private subscription: Subscription = new Subscription();
+  selectedCategory$: Observable<Category | null>;
 
-  constructor(private readonly categoryService: CategoryService) {}
+  constructor(
+    private readonly categoryService: CategoryService,
+    private readonly categoryStore: CategoryStore
+  ) {
+    this.selectedCategory$ = this.categoryStore.selectedCategory$;
+  }
 
   ngOnInit() {
+    this.selectedCategory$ = this.categoryStore.selectedCategory$;
+    this.subscription.add(
+      this.selectedCategory$.subscribe((category) => {
+        if (category) {
+          this.originalName = category.name;
+          this.originalDescription = category.description || '';
+          this.updateCategoryForm.setValue({
+            name: category.name,
+            description: category.description || '',
+          });
+        }
+      })
+    );
     this.setupValueChangeListeners();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   updateCategoryForm = new FormGroup<{
@@ -98,15 +118,18 @@ export class CategoryInfoComponent {
   });
 
   async updateCategory(dto: UpdateCategory) {
-    this.isUpdateLoading = true;
-    await this.categoryService.updateCategory(this.category.id, dto);
-    this.isUpdateLoading = false;
+    const category = await firstValueFrom(this.selectedCategory$);
+    if (category) {
+      this.isUpdateLoading = true;
+      await this.categoryService.updateCategory(category.id, dto);
+      this.categoryStore.setSelectedCategory({ ...category, ...dto });
+      this.isUpdateLoading = false;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes['category'])
     if (changes['category']?.currentValue) {
-      this.category = { ...changes['category'].currentValue };
+      this.categoryStore.setSelectedCategory(changes['category'].currentValue);
     }
 
     if (changes['isDialogClosed']?.currentValue) {
@@ -115,9 +138,12 @@ export class CategoryInfoComponent {
     }
   }
 
-  editTitle() {
-    this.originalName = this.category.name;
-    this.isEditingTitle = true;
+  async editTitle() {
+    const category = await firstValueFrom(this.selectedCategory$);
+    if (category) {
+      this.originalName = category.name;
+      this.isEditingTitle = true;
+    }
   }
 
   setupValueChangeListeners() {
@@ -148,45 +174,58 @@ export class CategoryInfoComponent {
       return;
     }
 
-    await this.updateCategory({ name: this.category.name });
-    this.category.name =
-      this.updateCategoryForm.value.name || this.originalName;
-    this.originalName = this.category.name;
-    this.updateCategoryForm.controls.name.markAsPristine();
+    const category = await firstValueFrom(this.selectedCategory$);
+    if (category) {
+      await this.updateCategory({ name: category.name });
+      category.name = this.updateCategoryForm.value.name || this.originalName;
+      this.originalName = category.name;
+      this.updateCategoryForm.controls.name.markAsPristine();
 
-    this.isEditingTitle = false;
-    this.categoryUpdated.emit(this.category);
-  }
-
-  cancelTitleEdit() {
-    this.category.name = this.originalName;
-    this.updateCategoryForm.controls.name.markAsPristine();
+      this.categoryUpdated.emit(category);
+    }
     this.isEditingTitle = false;
   }
 
-  editDescription() {
-    if (this.category?.description) {
-      this.originalDescription = this.category.description;
+  async cancelTitleEdit() {
+    const category = await firstValueFrom(this.selectedCategory$);
+    if (category) {
+      category.name = this.originalName;
+      this.updateCategoryForm.controls.name.markAsPristine();
+    }
+
+    this.isEditingTitle = false;
+  }
+
+  async editDescription() {
+    const category = await firstValueFrom(this.selectedCategory$);
+    if (category?.description) {
+      this.originalDescription = category.description;
       this.isEditingDescription = true;
     }
   }
 
   async confirmDescriptionEdit() {
-    if (!this.updateCategoryForm.value.description) {
-      this.category.description = 'Sem descrição';
-    } else {
-      await this.updateCategory({ description: this.category.description });
-      this.category.description =
-        this.updateCategoryForm.value.description || this.originalName;
+    const category = await firstValueFrom(this.selectedCategory$);
+    if (category) {
+      if (!this.updateCategoryForm.value.description) {
+        category.description = 'Sem descrição';
+      } else {
+        await this.updateCategory({ description: category.description });
+        category.description =
+          this.updateCategoryForm.value.description || this.originalName;
+      }
+      this.updateCategoryForm.controls.description.markAsPristine();
+      this.categoryUpdated.emit(category);
     }
-    this.updateCategoryForm.controls.description.markAsPristine();
     this.isEditingDescription = false;
-    this.categoryUpdated.emit(this.category);
   }
 
-  cancelDescriptionEdit() {
-    this.category.description = this.originalDescription;
-    this.isEditingDescription = false;
-    this.updateCategoryForm.controls.description.markAsPristine();
+  async cancelDescriptionEdit() {
+    const category = await firstValueFrom(this.selectedCategory$);
+    if (category) {
+      category.description = this.originalDescription;
+      this.isEditingDescription = false;
+      this.updateCategoryForm.controls.description.markAsPristine();
+    }
   }
 }

@@ -1,5 +1,5 @@
 <hlm-dialog-content *brnDialogContent="let ctx" class="min-w-[50rem]">
-  <hlm-dialog-header>
+  <hlm-dialog-header *ngIf="selectedCategory$ | async as category">
     <h3 hlmDialogTitle hlm>
       <span
         *ngIf="!isEditingTitle"
@@ -47,7 +47,7 @@
       </form>
     </h3>
   </hlm-dialog-header>
-  <div class="w-full px-3">
+  <div class="w-full px-3" *ngIf="selectedCategory$ | async as category">
     <h3 class="font-bold">Descrição da categoria</h3>
     <p *ngIf="!isEditingDescription" (click)="editDescription()">
       {{ category.description }}
@@ -91,6 +91,6 @@
 
   <div class="px-3 flex flex-col gap-3">
     <h3 class="font-bold text-orange-600">Subcategorias</h3>
-    <app-subcategories-list [category]="category"/>
+    <!-- <app-subcategories-list [category]="category" /> -->
   </div>
 </hlm-dialog-content>

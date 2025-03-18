@@ -72,7 +72,6 @@
 <hlm-dialog #infoForm (closed)="closeDialog()">
   <app-category-info
     (categoryUpdated)="updateCategoryInList($event)"
-    [category]="clickedCategory"
     [isDialogClosed]="dialogClosed"
   ></app-category-info>
 </hlm-dialog>
