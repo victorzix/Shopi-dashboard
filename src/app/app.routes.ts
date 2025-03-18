@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { AuthPageComponent } from './pages/auth-page/auth-page.component';
-import { loggedGuard } from './guards/auth/logged.guard';
-import { unloggedGuard } from './guards/auth/unlogged.guard';
-import { LoggedLayoutComponent } from './layouts/logged-layout/logged-layout.component';
-import { LoginFormComponent } from './components/auth-page/login-form/login-form.component';
+import { AuthPageComponent } from './features/auth/pages/auth-page.component';
+import { loggedGuard } from '@core/guards/auth/logged.guard';
+import { LoggedLayoutComponent } from '@shared/layouts/logged-layout/logged-layout.component';
+import { unloggedGuard } from '@core/guards/auth/unlogged.guard';
+
 
 export const routes: Routes = [
   {
@@ -21,34 +21,26 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadComponent: () =>
-          import('./pages/home-screen/home-screen.component').then(
-            (c) => c.HomeScreenComponent
+          import('./features/products/pages/products-page.component').then(
+            (c) => c.ProductsPageComponent
           ),
         title: 'Shopi',
       },
       {
         path: 'produtos',
         loadComponent: () =>
-          import('./pages/products/products-page/products-page.component').then(
+          import('./features/products/pages/products-page.component').then(
             (c) => c.ProductsPageComponent
           ),
           children: [
             {
               path: 'categorias',
               loadComponent: () =>
-                import('./pages/products/categories-page/categories-page.component').then(
+                import('./features/categories/pages/categories-page.component').then(
                   (c) => c.CategoriesPageComponent
                 ),
                 title: 'Categorias',
             },
-            {
-              path: 'analises',
-              loadComponent: () =>
-                import('./pages/products/analysis-page/analysis-page.component').then(
-                  (c) => c.AnalysisPageComponent
-                ),
-                title: 'Análises',
-            }
           ]
       }
     ],

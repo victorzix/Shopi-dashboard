@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
@@ -16,65 +17,68 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
+      "@utils/*": ["src/utils/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@core/*": ["src/app/core/*"],
       "@spartan-ng/ui-tabs-helm": [
-        ".\\src/app/components/libs/ui/ui-tabs-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-tabs-helm/src/index.ts"
       ],
       "@spartan-ng/ui-icon-helm": [
-        ".\\src/app/components/libs/ui/ui-icon-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-icon-helm/src/index.ts"
       ],
       "@spartan-ng/ui-button-helm": [
-        ".\\src/app/components/libs/ui/ui-button-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-button-helm/src/index.ts"
       ],
       "@spartan-ng/ui-sonner-helm": [
-        ".\\src/app/components/libs/ui/ui-sonner-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-sonner-helm/src/index.ts"
       ],
       "@spartan-ng/ui-input-helm": [
-        ".\\src/app/components/libs/ui/ui-input-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-input-helm/src/index.ts"
       ],
       "@spartan-ng/ui-formfield-helm": [
-        ".\\src/app/components/libs/ui/ui-formfield-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-formfield-helm/src/index.ts"
       ],
       "@spartan-ng/ui-label-helm": [
-        ".\\src/app/components/libs/ui/ui-label-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-label-helm/src/index.ts"
       ],
       "@spartan-ng/ui-sheet-helm": [
-        ".\\src/app/components/libs/ui/ui-sheet-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-sheet-helm/src/index.ts"
       ],
       "@spartan-ng/ui-skeleton-helm": [
-        ".\\src/app/components/libs/ui/ui-skeleton-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-skeleton-helm/src/index.ts"
       ],
       "@spartan-ng/ui-separator-helm": [
-        ".\\src/app/components/libs/ui/ui-separator-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-separator-helm/src/index.ts"
       ],
       "@spartan-ng/ui-accordion-helm": [
-        ".\\src/app/components/libs/ui/ui-accordion-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-accordion-helm/src/index.ts"
       ],
       "@spartan-ng/ui-popover-helm": [
-        ".\\src/app/components/libs/ui/ui-popover-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-popover-helm/src/index.ts"
       ],
       "@spartan-ng/ui-command-helm": [
-        ".\\src/app/components/libs/ui/ui-command-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-command-helm/src/index.ts"
       ],
       "@spartan-ng/ui-dialog-helm": [
-        ".\\src/app/components/libs/ui/ui-dialog-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-dialog-helm/src/index.ts"
       ],
       "@spartan-ng/ui-table-helm": [
-        ".\\src/app/components/libs/ui/ui-table-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-table-helm/src/index.ts"
       ],
       "@spartan-ng/ui-menu-helm": [
-        ".\\src/app/components/libs/ui/ui-menu-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-menu-helm/src/index.ts"
       ],
       "@spartan-ng/ui-select-helm": [
-        ".\\src/app/components/libs/ui/ui-select-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-select-helm/src/index.ts"
       ],
       "@spartan-ng/ui-pagination-helm": [
-        ".\\src/app/components/libs/ui/ui-pagination-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-pagination-helm/src/index.ts"
       ],
       "@spartan-ng/ui-badge-helm": [
-        ".\\src/app/components/libs/ui/ui-badge-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-badge-helm/src/index.ts"
       ],
       "@spartan-ng/ui-spinner-helm": [
-        ".\\src/app/components/libs/ui/ui-spinner-helm/src/index.ts"
+        ".\\src/app/shared/libs/ui/ui-spinner-helm/src/index.ts"
       ]
     }
   },

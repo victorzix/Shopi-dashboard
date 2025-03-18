@@ -1,0 +1,56 @@
+<div class="cursor-default w-full flex flex-wrap gap-1 items-center">
+  <ng-container *ngIf="subCategories && subCategories.length > 0">
+    <div
+      class="w-6 h-6 rounded-full cursor-pointer hover:bg-orange-500 transition-all ease-in-out duration-200 hover:scale-110 bg-orange-600 text-white flex items-center justify-center text-sm"
+      [brnMenuTriggerFor]="createSubCategoryMenu"
+    >
+      +
+    </div>
+  </ng-container>
+
+  <app-create-subcategory-form #createSubCategoryMenu/>
+
+  <ng-container *ngIf="!isSubCategoriesLoading; else skeleton">
+    <ng-container
+      *ngIf="subCategories && subCategories.length; else emptyState"
+    >
+      <div
+        class="bg-orange-500 hover:bg-orange-600"
+        *ngFor="let sub of subCategories; let i = index"
+        hlmBadge
+        [brnMenuTriggerFor]="subCategoryMenu"
+      >
+        {{ sub.name }}
+
+        <ng-template #subCategoryMenu>
+          <hlm-menu class="w-56">
+            <hlm-menu-group>
+              <hlm-menu-label>{{ sub.description }}</hlm-menu-label>
+            </hlm-menu-group>
+            <hlm-menu-separator />
+          </hlm-menu>
+        </ng-template>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+<ng-template #skeleton>
+  <hlm-skeleton
+    *ngFor="let _ of [].constructor(8); let i = index"
+    class="bg-gray-300 h-6 w-16 rounded-full"
+  />
+</ng-template>
+
+<ng-template #emptyState>
+  <div class="w-full flex flex-col justify-center items-center py-2 gap-2">
+    <span class="text-gray-500 italic"
+      >Nenhuma subcategoria encontrada.</span
+    >
+    <div
+      class="w-12 h-12 rounded-full cursor-pointer hover:bg-orange-500 transition-all ease-in-out duration-200 hover:scale-110 bg-orange-600 text-white flex items-center justify-center text-lg"
+      [brnMenuTriggerFor]="createSubCategoryMenu"
+    >
+      +
+    </div>
+  </div>
+</ng-template>
