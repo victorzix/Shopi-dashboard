@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {
   BrnDialogContentDirective,
-  BrnDialogTriggerDirective,
 } from '@spartan-ng/brain/dialog';
 import {
   HlmDialogContentComponent,
@@ -29,7 +28,6 @@ import { UpdateCategory } from '../../models/update-category.model';
     HlmDialogHeaderComponent,
     HlmDialogTitleDirective,
     BrnDialogContentDirective,
-    BrnDialogTriggerDirective,
     ReactiveFormsModule,
     HlmInputDirective,
     HlmLabelDirective,

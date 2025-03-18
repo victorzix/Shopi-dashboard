@@ -8,11 +8,9 @@ import {
 import { CategoryService } from '../../services/category.service';
 import {
   BrnDialogContentDirective,
-  BrnDialogTriggerDirective,
 } from '@spartan-ng/brain/dialog';
 import {
   HlmDialogContentComponent,
-  HlmDialogFooterComponent,
   HlmDialogHeaderComponent,
   HlmDialogModule,
   HlmDialogTitleDirective,
@@ -24,24 +22,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { HlmInputDirective, HlmInputModule } from '@spartan-ng/ui-input-helm';
-import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import { HlmInputModule } from '@spartan-ng/ui-input-helm';
 import { CommonModule } from '@angular/common';
-import {
-  HlmMenuComponent,
-  HlmMenuGroupComponent,
-  HlmMenuItemDirective,
-  HlmMenuItemIconDirective,
-  HlmMenuItemSubIndicatorComponent,
-  hlmMenuItemVariants,
-  HlmMenuLabelComponent,
-  HlmMenuSeparatorComponent,
-  HlmMenuShortcutComponent,
-  HlmSubMenuComponent,
-} from '@spartan-ng/ui-menu-helm';
-import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
-import { BrnMenuTriggerDirective } from '@spartan-ng/brain/menu';
 import { NgIcon } from '@ng-icons/core';
 import { SubcategoriesListComponent } from './subcategories/subcategories-list/subcategories-list.component';
 import { HlmSpinnerComponent } from '@shared/libs/ui/ui-spinner-helm/src';
@@ -89,7 +71,6 @@ export class CategoryInfoComponent {
   }
 
   ngOnInit() {
-    this.selectedCategory$ = this.categoryStore.selectedCategory$;
     this.subscription.add(
       this.selectedCategory$.subscribe((category) => {
         if (category) {

@@ -39,7 +39,6 @@ import { CategoryStore } from '../../store/category.store';
     BrnContextMenuTriggerDirective,
     CommonModule,
     HlmSkeletonComponent,
-    CategoryUpdateFormComponent,
     HlmDialogComponent,
     CategoryInfoComponent,
   ],

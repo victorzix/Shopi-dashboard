@@ -10,7 +10,6 @@ export class CategoryStore {
   constructor () {}
 
   setSelectedCategory(category: Category) {
-    console.log('a')
     this.selectedCategorySubject.next(category);
   }
 }
