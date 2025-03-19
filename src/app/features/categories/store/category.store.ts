@@ -1,13 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Category } from "@core/models/categories/category.model";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Category } from '@core/models/categories/category.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class CategoryStore {
   private selectedCategorySubject = new BehaviorSubject<Category | null>(null);
-  public selectedCategory$: Observable<Category | null> = this.selectedCategorySubject.asObservable();
+  public selectedCategory$: Observable<Category | null> =
+    this.selectedCategorySubject.asObservable();
 
-  constructor () {}
+  constructor() {}
 
   setSelectedCategory(category: Category) {
     this.selectedCategorySubject.next(category);
