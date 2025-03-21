@@ -6,7 +6,6 @@ import { Router, RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
   providers: [Router],
   templateUrl: './products-page.component.html',
-  styleUrl: './products-page.component.scss'
 })
 export class ProductsPageComponent {
 

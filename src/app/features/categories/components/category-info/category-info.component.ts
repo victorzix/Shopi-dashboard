@@ -49,7 +49,6 @@ import { firstValueFrom, Observable, Subscription } from 'rxjs';
     SubcategoriesListComponent,
   ],
   templateUrl: './category-info.component.html',
-  styleUrl: './category-info.component.scss',
 })
 export class CategoryInfoComponent {
   @Output() categoryUpdated = new EventEmitter<Category>();

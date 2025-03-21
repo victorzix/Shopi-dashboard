@@ -43,7 +43,6 @@ import { CreateCategory } from '../../models/create-category.model';
     ReactiveFormsModule,
   ],
   templateUrl: './create-category-float-button.component.html',
-  styleUrl: './create-category-float-button.component.scss',
 })
 export class CreateCategoryFloatButtonComponent {
   @Output() categoryCreated = new EventEmitter<Category>();

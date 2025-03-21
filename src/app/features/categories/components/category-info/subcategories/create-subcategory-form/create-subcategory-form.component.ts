@@ -27,7 +27,6 @@ import { CategoryStore } from 'src/app/features/categories/store/category.store'
     ReactiveFormsModule,
   ],
   templateUrl: './create-subcategory-form.component.html',
-  styleUrl: './create-subcategory-form.component.scss',
 })
 export class CreateSubcategoryFormComponent {
   isVisibilityLoading: boolean = false;

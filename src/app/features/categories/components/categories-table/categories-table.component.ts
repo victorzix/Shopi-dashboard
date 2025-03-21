@@ -45,7 +45,6 @@ import { CategoryStore } from '../../store/category.store';
   providers: [CategoryStore],
   viewProviders: [provideIcons({ lucideChevronDown })],
   templateUrl: './categories-table.component.html',
-  styleUrl: './categories-table.component.scss',
 })
 export class CategoriesTableComponent {
   @Input() public categories: Category[] = [];

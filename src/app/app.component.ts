@@ -6,7 +6,6 @@ import { HlmToasterComponent } from '@spartan-ng/ui-sonner-helm';
   selector: 'app-root',
   imports: [RouterOutlet, HlmToasterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'Shopi-dashboard';

@@ -10,9 +10,10 @@ import { FilterCategory } from '../models/filter-category.model';
 import { CreateCategory } from '../models/create-category.model';
 import { Category } from '@core/models/categories/category.model';
 import { UpdateCategory } from '../models/update-category.model';
+import { ICategoryService } from '../interfaces/category-service.interface';
 
 @Injectable()
-export class CategoryService {
+export class CategoryService implements ICategoryService {
   constructor(private http: HttpClient) {}
 
   async listCategories(

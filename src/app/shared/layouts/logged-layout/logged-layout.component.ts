@@ -7,7 +7,6 @@ import { HeaderComponent } from '@shared/header/header.component';
   selector: 'app-logged-layout',
   imports: [RouterOutlet, CommonModule, HeaderComponent],
   templateUrl: './logged-layout.component.html',
-  styleUrl: './logged-layout.component.scss'
 })
 export class LoggedLayoutComponent {
 

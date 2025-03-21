@@ -36,7 +36,6 @@ import { UpdateSubcategoryFormComponent } from '../update-subcategory-form/updat
     UpdateSubcategoryFormComponent,
   ],
   templateUrl: './subcategories-list.component.html',
-  styleUrl: './subcategories-list.component.scss',
 })
 export class SubcategoriesListComponent {
   isSubCategoriesLoading: boolean = false;

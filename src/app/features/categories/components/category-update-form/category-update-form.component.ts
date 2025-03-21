@@ -35,7 +35,6 @@ import { UpdateCategory } from '../../models/update-category.model';
     CommonModule,
   ],
   templateUrl: './category-update-form.component.html',
-  styleUrl: './category-update-form.component.scss',
 })
 export class CategoryUpdateFormComponent {
   @Input() public category: Category | null = null;

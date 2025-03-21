@@ -1,9 +1,8 @@
-@use "@angular/cdk/overlay-prebuilt.css";
-@use "@spartan-ng/brain/hlm-tailwind-preset.css";
-@use "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap");
-
+@import "@angular/cdk/overlay-prebuilt.css";
+@import "@spartan-ng/brain/hlm-tailwind-preset.css";
+@import "tailwindcss";
 
 body {
   height: 100vh;

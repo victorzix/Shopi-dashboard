@@ -33,7 +33,6 @@ import { CategoryStore } from 'src/app/features/categories/store/category.store'
     ReactiveFormsModule,
   ],
   templateUrl: './update-subcategory-form.component.html',
-  styleUrl: './update-subcategory-form.component.scss',
 })
 export class UpdateSubcategoryFormComponent {
   isVisibilityLoading: boolean = false;

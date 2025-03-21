@@ -19,6 +19,5 @@ import { RegisterFormComponent } from '../components/register-form/register-form
     RegisterFormComponent,
   ],
   templateUrl: './auth-page.component.html',
-  styleUrl: './auth-page.component.scss',
 })
 export class AuthPageComponent {}
