@@ -7,6 +7,4 @@ import { Router, RouterOutlet } from '@angular/router';
   providers: [Router],
   templateUrl: './products-page.component.html',
 })
-export class ProductsPageComponent {
-
-}
+export class ProductsPageComponent {}

@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { LoginData } from '../../models/login-data.model';
 import ToastUtils from '@utils/toast.utils';
 
-
 @Component({
   selector: 'app-login-form',
   imports: [
@@ -43,14 +42,11 @@ export class LoginFormComponent {
     };
 
     const loginResult = await this.authService.login(formData);
-    if (loginResult.error) {
-      loginResult.error.error.errors.forEach((err: string) => {
-        ToastUtils.showToast('error', 'Erro ao realizar login', 3000, err);
-      });
-    } else if (loginResult.token) {
+
+    if (loginResult?.token) {
       ToastUtils.showToast('loading', 'Redirecionando para dashboard', 3500);
 
-      localStorage.setItem('token', loginResult.token);
+      localStorage.setItem('token', loginResult?.token);
       setTimeout(() => {
         this.router.navigate(['']);
       }, 3000);

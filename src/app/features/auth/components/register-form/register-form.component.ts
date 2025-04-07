@@ -49,21 +49,8 @@ export class RegisterFormComponent {
       role: 'administrator',
     };
 
-    const registerResult = await this.authService.register(formData);
-    if (registerResult.error) {
-      registerResult.error.error.errors.forEach((err: string) => {
-        ToastUtils.showToast('error', 'Erro ao se registrar', 3000, err);
-      });
-    } else if (registerResult.token) {
-      ToastUtils.showToast('success', 'Usuário cadastrado com sucesso', 1300);
-
-      setTimeout(() => {
-        ToastUtils.showToast('loading', 'Redirecionando para dashboard', 2100);
-      }, 1000);
-      localStorage.setItem('token', registerResult.token);
-      setTimeout(() => {
-        this.router.navigate(['']);
-      }, 3000);
-    }
+    this.authService.register(formData).then(() => {
+      this.registerForm.reset();
+    });
   }
 }

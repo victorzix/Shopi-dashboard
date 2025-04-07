@@ -58,7 +58,7 @@ import { Category } from '@core/models/categories/category.model';
 export class CategoriesPageComponent {
   private currentFilters: FilterCategory = {};
   public categories: Category[] = [];
-  public isLoading = true;
+  public isLoading = false;
   public limit = 6;
   public page = 1;
   public totalPages = 0;
