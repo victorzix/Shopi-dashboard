@@ -3,6 +3,7 @@ import { HlmSpinnerComponent } from '../../../../shared/libs/ui/ui-spinner-helm/
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import ToastUtils from '@utils/toast.utils';
 
 @Component({
   imports: [HlmSpinnerComponent, CommonModule, RouterModule],
@@ -14,7 +15,7 @@ export class ConfirmEmailPageComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   async ngOnInit() {
@@ -28,8 +29,8 @@ export class ConfirmEmailPageComponent {
           });
         }
         if (response?.token) {
-          localStorage.setItem('token', response?.token);
-          this.router.navigate(['/']);
+          ToastUtils.showToast("success", "Email confirmado com sucesso!", 2000)
+          this.router.navigate(['/login']);
         }
       }
     });

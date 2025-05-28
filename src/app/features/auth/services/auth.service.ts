@@ -1,7 +1,4 @@
-import {
-  HttpClient,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { httpHeaders } from '../../../common/httpCommons';
 import { lastValueFrom, Observable } from 'rxjs';
@@ -37,6 +34,7 @@ export class AuthService {
   }
 
   async register(data: RegisterData) {
+    const loadingToast = ToastUtils.showLoadingToast('Registrando usuário...');
     try {
       const result = this.http.post<RegisterResponse>(
         `${environment.apiUrl}/admin/register`,
@@ -53,8 +51,10 @@ export class AuthService {
         1300,
         'Email de confirmação enviado para o seu e-mail.'
       );
+      ToastUtils.dismissLoadingToast(loadingToast);
       return response;
     } catch (err: any) {
+      ToastUtils.dismissLoadingToast(loadingToast);
       ErrorHandlerUtils.handleError(err);
       throw err;
     }
