@@ -1,14 +1,20 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { AuthStore } from 'src/app/features/auth/store/auth.store';
 
 export const unloggedGuard: CanActivateFn = (route, state) => {
-   const token: string | null = localStorage.getItem('token');
-    const router = inject(Router);
+  const router = inject(Router);
+  const authStore = inject(AuthStore);
+  const user = authStore.authenticatedUser;
 
-    if (token == null) {
-      router.navigate(['/login']);
-      return false;
-    }
+  if (!user) {
+    router.navigate(['/login']);
+    return false;
+  }
 
-    return true;
+  if (state.url === '/') {
+    router.navigate(['/dashboard']);
+    return false;
+  }
+  return true;
 };

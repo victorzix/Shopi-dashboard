@@ -3,11 +3,11 @@
     <ng-icon name="lucideMenu" class="text-xl"/>
   </button>
   <hlm-sheet-content *brnSheetContent="let ctx">
-    <app-side-bar-header [dataLoaded]="dataLoaded" [userData]="userData" />
+    <app-side-bar-header [isLoading]="authStore.isLoading" [userData]="authStore.authenticatedUser" />
     <brn-separator hlmSeparator class="my-4" />
     <app-side-bar-body />
-    <hlm-sheet-footer>
-      <button hlmBtn type="submit">Save Changes</button>
+    <hlm-sheet-footer class="mt-5">
+      <button hlmBtn variant="destructive" class="w-full transition-all ease-in-out cursor-pointer duration-300 hover:scale-105" type="button" (click)="logout()">Sair</button>
     </hlm-sheet-footer>
   </hlm-sheet-content>
 </hlm-sheet>

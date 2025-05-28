@@ -7,7 +7,7 @@ import {
 } from '@spartan-ng/ui-sheet-helm';
 import { LogoComponent } from '../../../logo/logo.component';
 import { CommonModule } from '@angular/common';
-import { Admin } from '@core/models/admin/admin.model';
+import { User } from 'src/app/features/users/models/user.model';
 
 @Component({
   selector: 'app-side-bar-header',
@@ -22,6 +22,6 @@ import { Admin } from '@core/models/admin/admin.model';
   templateUrl: './side-bar-header.component.html',
 })
 export class SideBarHeaderComponent {
-  @Input() userData: Admin | null = null;
-  @Input() dataLoaded: boolean = false;
+  @Input() userData: User | null = null;
+  @Input() isLoading: boolean = false;
 }

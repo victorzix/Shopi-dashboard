@@ -1,11 +1,10 @@
 import {
   HttpClient,
-  HttpErrorResponse,
   HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { httpHeaders } from '../../../common/httpCommons';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
 import { LoginData } from '../models/login-data.model';
 import { LoginResponse } from '../models/login-response.model';
@@ -13,6 +12,7 @@ import { RegisterResponse } from '../models/register-response.model';
 import { RegisterData } from '../models/register-data.model';
 import ErrorHandlerUtils from '@utils/error-handler.utils';
 import ToastUtils from '@utils/toast.utils';
+import { User } from '../../users/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,21 +20,20 @@ import ToastUtils from '@utils/toast.utils';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  async login(data: LoginData) {
-    try {
-      const result = this.http.post<LoginResponse>(
-        `${environment.apiUrl}/auth/login-admin`,
-        data,
-        {
-          ...httpHeaders,
-        }
-      );
-      const response = await lastValueFrom(result);
-      return response;
-    } catch (err: any) {
-      ErrorHandlerUtils.handleError(err);
-      return null;
-    }
+  login(data: LoginData): Observable<void> {
+    return this.http.post<void>(
+      `${environment.apiUrl}/auth/login-admin`,
+      data,
+      {
+        ...httpHeaders,
+      }
+    );
+  }
+
+  getAuthenticatedUser(): Observable<User> {
+    return this.http.get<User>(`${environment.apiUrl}/auth/get-data`, {
+      ...httpHeaders,
+    });
   }
 
   async register(data: RegisterData) {

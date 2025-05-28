@@ -1,8 +1,6 @@
 <div hlmAccordion type="single">
-  <div
-    hlmAccordionItem
-    [isOpened]="isActive(['dashboard', 'informacoes'])"
-  >
+  <!-- DASHBOARD -->
+  <div hlmAccordionItem [isOpened]="isActive(['dashboard', 'dashboard/informacoes'])">
     <button hlmAccordionTrigger>
       <div class="flex items-center gap-3">
         <ng-icon name="lucideShoppingBag" hlm />
@@ -12,15 +10,22 @@
     </button>
     <hlm-accordion-content>
       <ol>
-        <app-list-item title="Inicio" route="dashboard" />
-        <app-list-item title="Informações" route="informacoes" />
+        <app-list-item title="Início" route="/dashboard" />
+        <app-list-item title="Informações" route="/dashboard/informacoes" />
       </ol>
     </hlm-accordion-content>
   </div>
 
+  <!-- PRODUTOS -->
   <div
     hlmAccordionItem
-    [isOpened]="isActive(['produtos', 'produtos/categorias', 'produtos/analises'])"
+    [isOpened]="
+      isActive([
+        'produtos',
+        'produtos/categorias',
+        'produtos/analises'
+      ])
+    "
   >
     <button hlmAccordionTrigger>
       <div class="flex items-center gap-3">
@@ -31,9 +36,9 @@
     </button>
     <hlm-accordion-content>
       <ol>
-        <app-list-item title="Visão Geral" route="produtos" />
-        <app-list-item title="Categorias" route="produtos/categorias" />
-        <app-list-item title="Análises" route="produtos/analises" />
+        <app-list-item title="Visão Geral" route="/produtos" />
+        <app-list-item title="Categorias" route="/produtos/categorias" />
+        <app-list-item title="Análises" route="/produtos/analises" />
       </ol>
     </hlm-accordion-content>
   </div>

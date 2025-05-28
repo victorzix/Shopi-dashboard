@@ -57,7 +57,31 @@
     </label>
   </form>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 w-full place-items-center">
-    <app-product *ngFor="let _ of [].constructor(52); let i = index" />
-  </div>
+  <ng-container *ngIf="!isLoading; else loadingSkeleton">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 w-full place-items-center"
+    >
+      <app-product *ngFor="let product of products" [product]="product" />
+      <div
+        class="group flex bg-white flex-col min-w-62 max-w-62 h-86 border shadow-2xl rounded-xl space-y-4 justify-center items-center"
+      >
+        <button
+          class="w-23 h-23 rounded-full cursor-pointer hover:bg-orange-500 transition-all ease-in-out duration-200 hover:scale-110 bg-orange-600 text-white flex items-center justify-center text-3xl"
+        >
+          +
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingSkeleton>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 w-full place-items-center"
+    >
+      <hlm-skeleton
+        class="group flex bg-gray-300 flex-col min-w-62 max-w-62 h-86 border shadow-2xl rounded-xl space-y-4"
+        *ngFor="let _ of [].constructor(25); let i = index"
+      />
+    </div>
+  </ng-template>
 </div>

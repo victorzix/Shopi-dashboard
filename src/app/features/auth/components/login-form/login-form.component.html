@@ -41,8 +41,8 @@
       type="submit"
       hlmBtn
       variant="secondary"
-      [disabled]="loginForm.invalid"
-      class="w-full cursor-pointer hover:bg-black hover:scale-105 hover:text-white rounded-xs hover:rounded-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out"
+      [disabled]="loginForm.invalid || authStore.isLoading"
+      class="w-full hover:cursor-pointer hover:bg-black hover:text-white rounded-xs hover:rounded-lg hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out"
     >
       Entrar
     </button>

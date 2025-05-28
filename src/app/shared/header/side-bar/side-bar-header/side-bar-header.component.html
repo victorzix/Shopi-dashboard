@@ -3,16 +3,16 @@
     <app-logo type="mini" />
   </div>
   <div hlmSheetDescription>
-    <ng-container *ngIf="dataLoaded; else skeleton">
+    <ng-container *ngIf="!isLoading; else skeleton">
       <div class="w-full flex flex-col gap-2 justify-center items-center">
         <img
           [src]="
-            userData?.imageUrl ||
+            userData?.appAdmin?.imageUrl ||
             'https://images.unsplash.com/photo-1668242372382-9e6282c63578?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
           "
           class="w-18 h-18 rounded-full"
         />
-        <span>{{ userData?.name }}</span>
+        <span>{{ userData?.appAdmin?.name }}</span>
       </div>
     </ng-container>
 

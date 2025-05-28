@@ -1,13 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import { LoginData } from '../../models/login-data.model';
-import ToastUtils from '@utils/toast.utils';
+import { AuthStore } from '../../store/auth.store';
 
 @Component({
   selector: 'app-login-form',
@@ -21,8 +19,7 @@ import ToastUtils from '@utils/toast.utils';
 })
 export class LoginFormComponent {
   constructor(
-    private authService: AuthService,
-    @Inject(Router) private router: Router
+    public authStore: AuthStore,
   ) {}
 
   blockSpace: RegExp = /[^\s]/;
@@ -41,15 +38,6 @@ export class LoginFormComponent {
       password: this.loginForm.value.password ?? '',
     };
 
-    const loginResult = await this.authService.login(formData);
-
-    if (loginResult?.token) {
-      ToastUtils.showToast('loading', 'Redirecionando para dashboard', 3500);
-
-      localStorage.setItem('token', loginResult?.token);
-      setTimeout(() => {
-        this.router.navigate(['']);
-      }, 3000);
-    }
+    this.authStore.loginUser(formData);
   }
 }

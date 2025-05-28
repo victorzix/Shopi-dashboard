@@ -31,6 +31,9 @@ export class SideBarBodyComponent {
   constructor(private router: Router) {}
 
   isActive(routes: string[]): boolean {
-    return routes.some((route) => this.router.url.includes(route));
+    return routes.some((route) => {
+      const current = this.router.url.replace(/^\//, '');
+      return current === route || current.startsWith(`${route}/`);
+    });
   }
 }

@@ -1,23 +1,34 @@
 <div
-  class="group flex flex-col min-w-62 max-w-62 h-86 border border-gray-300 shadow-2xl rounded-xl space-y-7 hover:bg-orange-600 hover:scale-110 transition-all ease-in-out duration-200 cursor-pointer"
+  class="group flex flex-col min-w-62 max-w-62 h-86 border border-gray-300 shadow-2xl rounded-xl space-y-4 hover:bg-orange-600 hover:scale-110 transition-all ease-in-out duration-200 cursor-pointer"
+  (click)="clickOnProduct()"
 >
   <div class="min-w-full max-w-full min-h-3/5 max-h-3/5">
-    <img
-      class="h-full w-full"
-      src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1999&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      alt=""
-    />
+    <img class="h-full w-full" src="{{ productImage }}" alt="" />
   </div>
   <div class="h-1/4 px-4 flex flex-col gap-2">
     <div>
       <span
         class="text-orange-600 font-bold tracking-wider group-hover:text-white"
-        >Nome do produto</span
+        >{{ product.name }}</span
       >
       <p class="text-gray-500 group-hover:text-white">
-        {{ 1050 / 100 | currency : "BRL" }}
+        {{ product.price / 100 | currency : "BRL" }}
       </p>
     </div>
-    <p class="text-xs text-gray-400 group-hover:text-gray-200">Última atualização: {{ today | date }}</p>
+
+    <div>
+      <p
+        class="text-xs text-gray-400 group-hover:text-gray-200"
+        *ngIf="product.sku"
+      >
+        SKU: {{ product.sku }}
+      </p>
+      <p class="text-xs text-gray-400 group-hover:text-gray-200">
+        Quantidade: {{ product.quantity }}
+      </p>
+      <p class="text-xs text-gray-400 group-hover:text-gray-200">
+        Última atualização: {{ product.updatedAt | date }}
+      </p>
+    </div>
   </div>
 </div>
